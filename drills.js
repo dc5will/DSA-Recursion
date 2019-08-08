@@ -60,3 +60,20 @@ function powerCalculator(base, exp) {
 console.log(powerCalculator(10, 2)); // output: 100
 console.log(powerCalculator(10, -2)); // 'exponent should be >= 0'
 
+// Reverse String
+// Write a function that reverses a string. Take a string as input, reverse the string and return the new string.
+
+// input: abcde
+// output: edcba
+
+function reverseString(string) {
+    // base case
+    if (string.length <= 0) {
+        return '';
+    }
+    if (string.length >= 1) {
+        return string[string.length - 1] + reverseString(string.slice(0, -1));
+    }
+}
+
+console.log(reverseString('abcde')) // output: edcba
