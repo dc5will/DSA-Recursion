@@ -10,4 +10,30 @@
 
 // 2. Recursive case is when you use the same algorithm to solve a simpler problem of itself with the same number of parameters to solve a smaller version of the problem.
 
+/*
+What is the input of the program?
+What is the output of the program?
+What is the input to each recursive call?
+What is the output of each recursive call? 
+*/
 
+// 1. Write a recursive function that counts how many sheep jump over the fence. Your program should take a number as input. That number should be the number of sheep you have. The function should display the number along with the message "Another sheep jumps over the fence" until no more sheep are left.
+
+// input: integer (5)
+// expected output: integer: 'Another sheep jumps over the fence'
+// base case: integer (0)
+
+function howManySheeps(int) {
+    // base case
+    if (int === 0) {
+        console.log('All sheep jumped over the fence')
+        return;
+    } 
+    // general case
+    if (int > 0) {
+        console.log(`${int}: Another sheep jumped over the fence`)
+        howManySheeps(int - 1); // recursive call
+    }
+}
+
+howManySheeps(5);
