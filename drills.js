@@ -37,3 +37,5 @@ function howManySheeps(int) {
 }
 
 howManySheeps(5);
+
+// testing git commit credential settings
