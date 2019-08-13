@@ -10,16 +10,16 @@
 
 // 2. Recursive case is when you use the same algorithm to solve a simpler problem of itself with the same number of parameters to solve a smaller version of the problem.
 
-const sumOf = function(list) {
+const sumOf = function (list) {
     // Base case
     if (list.length === 1) { // checks to see if the list has only 1 item
         return list[0];
-    } 
+    }
     // General case
     return list[0] + sumOf(list.slice(1)); // after each time the functions calls itself, the list has 1 less item
 }
 
-let lst = [2,4,6,8,10];
+let lst = [2, 4, 6, 8, 10];
 console.log('sumOf =', sumOf(lst)); // 30
 
 /* 
@@ -41,7 +41,7 @@ function howManySheeps(int) {
     if (int === 0) {
         console.log('All sheep jumped over the fence')
         return;
-    } 
+    }
     // general case
     if (int > 0) {
         console.log(`${int}: Another sheep jumped over the fence`)
@@ -118,7 +118,7 @@ function stringSplitter(string, sep) {
     // base case
     if (string.length === 0) {
         return '';
-    // recursive cases
+        // general cases
     } else if (string[0] === sep) {
         return stringSplitter(string.slice(1), sep);
     } else {
@@ -128,3 +128,87 @@ function stringSplitter(string, sep) {
 
 console.log(stringSplitter('02/20/2020', '/')) // 02202020
 
+// ============ Fibonacci ================
+// TODO: Write a recursive function that prints the Fibonacci sequence of a given number. The Fibonacci sequence is a series of numbers in which each number is the sum of the 2 preceding numbers. For example, the 7th Fibonacci number in a Fibonacci sequence is 13. The sequence looks as follows: 1, 1, 2, 3, 5, 8, 13.
+// fib(num - 2) + fib(num - 1)
+
+// input: 7
+// output: 13
+
+function fib(num) {
+    // base case
+    if (num === 0) {
+        return;
+    }
+    else if (num === 1) {
+        return 1;
+    }
+    else if (num === 2) {
+        return 1;
+    }
+    // general case
+    return fib(num - 2) + fib(num - 1);
+}
+
+console.log(fib(7)); // returns 13
+
+// ==================== Factorial =======================
+// TODO: Write a recursive function that finds the factorial of a given number. The factorial of a number can be found by multiplying that number by each number between itself and 1. For example, the factorial of 5 is 5 * 4 * 3 * 2 * 1 = 120.
+
+// input: 5
+// output: 120
+
+function factorial(num) {
+    // base case
+    if (num === 0) {
+        return 1;
+    } else {
+        return num * factorial(num - 1);
+    }
+}
+
+console.log(factorial(5)); // 120
+
+// ================= Anagrams ====================
+// TODO: An anagram is any word or phrase that uses the letters of a given ("subject") word or phrase in another, rearranged order. Write a function that creates an anagram list, listing all the rearrangements of a given word. For example, if the user types "east", the program should list all 24 permutations, including "eats", "etas", "teas", and non-words like "tsae".
+
+// input: 'east' (data type = string)
+// output: list of strings of anagrams (string.length = 24)
+
+function anagram(word) {
+    let results = []; // store the results in an array
+    // base case
+    if (word.length <= 1) {
+        return [word];
+    }
+    const str = word.split(''); // splits word into an array of single letters
+    // console.log('str =', str); 
+    str.forEach((letter, idx) => {
+        let charLeft = [...str.slice(0, idx), ...str.slice(idx + 1)].join('');
+        const permutations = anagram(charLeft);
+        permutations.forEach(permutation => {
+            results.push(letter + permutation);
+        });
+    });
+    return results;
+}
+
+console.log(anagram('east')); // returns 24 strings
+
+// ================ Binary Representation =======================
+// TODO: Write a recursive function that prints out the binary representation of a given number. For example, the program should take 3 as an input and print 11 as output, or 25 as an input and print 11001 as an output. Note that the binary representation of 0 should be 0.
+
+// input: 3
+// output: 11
+
+function binary(num) {
+    // base case
+    if (num < 1) {
+        return '';
+    } else {
+        return binary(num / 2) + Math.floor(num % 2);
+    }
+}
+
+console.log(binary(3)); // 11
+console.log(binary(25)); // 11001
